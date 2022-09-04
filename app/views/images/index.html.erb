@@ -2,10 +2,14 @@
 
 <%= @images.each do |image| %>
 <%# к каждой подобной секции будет привязан контоллер? %>
+<%# события(копи и тд) можно вызывать на всем обекте window если добавить к событию  @window  %>
+<%# таким образом эти события могут перехватываться другими контроллерами %>
     <%= tag.section class: 'my-5', 
-        data: {controller: 'images toast', action: 'images:copy->toast#show'}  do  %>
+        data: {controller: 'images toast', action: 'images:copy->toast#show', 
+        'images-loading-class': 'disabled', 'images-id-value': image.id}  do  %>
         <%= image_tag image.url, class: 'img-thumbnail rounded d-block',
-            alt: image.title, data: {'action': 'click->images#getUrl'} %>
+            alt: image.title, data: {'action': 'click->images#getUrl',
+            'images-target': 'image'} %>
     <% end %>   
 <% end %>
 
