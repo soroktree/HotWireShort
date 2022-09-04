@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { patch } from '@rails/request.js'
 
 export default class extends Controller {
     static targets = [ 'image', 'title', 'save' ]
@@ -25,6 +26,7 @@ export default class extends Controller {
             const btn = document.createElement('button')
             btn.textContent = 'Save'
             btn.classList = 'btn btn-primary btn-sm'
+
             btn.dataset.imagesTarget = 'save'
             btn.dataset.action = 'click->images#saveTitle'
             e.target.insertAdjacentElement('afterend', btn)
@@ -32,14 +34,19 @@ export default class extends Controller {
     }
 
     async saveTitle(e){
-        console.log('SAVE SAVE SAVE!!!!')
         e.preventDefault()
         e.target.disabled = true 
+        //для btn работает атрибут disabled в дургих случаях надо создать класс disabled 
         e.target.classList.add(this.loadingClass)
 
-        const formData = new FormData()
-        formData.append('image[title]', this.titleTarget.innerText)
-        await this.doPatch(`/api/images/${this.idValue}`,formData)
+        // const formData = new FormData()
+        // formData.append('image[title]', this.titleTarget.innerText)
+
+        await this.doPatch(`/api/images/${this.idValue}`,JSON.stringify({
+            image: {
+                title: this.titleTarget.innerText
+            }
+        }))
 
         e.target.remove()
     }
@@ -61,17 +68,19 @@ export default class extends Controller {
     }
 
     async doPatch(url,body) {
-        const csrfToken = document.getElementsByName('csrf-token')[0].content
+        const response = await patch( url, {body: body })
 
-        await fetch(url, {
-            method: 'PATCH',
-            body: body,
-            headers: {
-                "X-CSRF-Token": csrfToken
-            }
+        if(!response.ok) {
+            raise("failed")
+        }
+        // const csrfToken = document.getElementsByName('csrf-token')[0].content
 
-        })
+        // await fetch(url, {
+        //     method: 'PATCH',
+        //     body: body,
+        //     headers: {
+        //         "X-CSRF-Token": csrfToken
+        //     }
+        // })
     }
-
-
 }

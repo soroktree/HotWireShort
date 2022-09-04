@@ -10,10 +10,6 @@ export default class extends Controller {
         )
     }
     connect() {
-        // console.log('TOAST CONTROLLER')
-        // this.toast = new Toast(
-        //     document.getElementById('copyToast')
-        // )
     }
 
     show({detail: {content}}){
