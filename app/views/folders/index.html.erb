@@ -1,0 +1,11 @@
+<h1>Folders </h1>
+
+<%# содержимое страницы по ссылке вгружается в турбо фрейм по сопоставлению id  %>
+<%= link_to 'Add Folder', new_folder_path, class: 'btn btn-primary',
+    data: {turbo_frame: dom_id(Folder.new)} %>
+
+<%= turbo_frame_tag Folder.new %>
+
+<%# <%= render 'add_folder' %> %>
+
+<%= render @folders %>

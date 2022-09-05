@@ -1,0 +1,7 @@
+<%= turbo_frame_tag @folder do %>
+    <h2><%= @folder.title %></h2>
+
+    <p><%= @folder.description %></p>
+
+    <%= link_to 'back to folders', folders_path, class: 'btn btn-secondary' %>
+<% end %>
