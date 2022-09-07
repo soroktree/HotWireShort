@@ -28,13 +28,13 @@ class FoldersController < ApplicationController
     def create
         @folder = Folder.new folder_params
         if @folder.save
+            flash.now[:success] = 'Folder created'
         else
              render :new
         end
     end
 
     def show
-
     end
     
 
