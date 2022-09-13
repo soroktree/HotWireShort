@@ -1,24 +1,17 @@
-# README
+Application demonstrates some features of HTML over the wire ( Hotwire ) 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Images part of the app present some features of the stimulus framework.
 
-Things you may want to cover:
+ * Copy Image url in Stimulus controller when clicking on it
+ 
+ * Bootstrap toast notification when Image url copied
+ 
+Folders part of the app presents some HotWire features:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  * CRUD operations whithout page refresh using turbo frame tag and turbo stream responces
+  
+<img src="https://github.com/soroktree/HotWireShort/blob/main/app/assets/images/hwire3.png" alt="screenshots" style="max-width: 100%;">
+  
+<img src="https://github.com/soroktree/HotWireShort/blob/main/app/assets/images/hwire2.png" alt="screenshots" style="max-width: 100%;">
+    
+<img src="https://github.com/soroktree/HotWireShort/blob/main/app/assets/images/hwire1.png" alt="screenshots" style="max-width: 100%;">
